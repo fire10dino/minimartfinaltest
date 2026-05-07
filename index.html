@@ -7,10 +7,6 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <!-- ✅ Hidden iframe (prevents new tab / redirect) -->
-    <iframe name="hiddenFrame" style="display:none;"></iframe>
-
     <!-- Cart Overlay and Sidebar -->
     <div class="cart-overlay" id="cartOverlay"></div>
     <div class="cart-sidebar" id="cartSidebar">
@@ -34,48 +30,37 @@
     <div class="form-overlay" id="formOverlay"></div>
     <div class="checkout-form" id="checkoutForm">
         <h2 class="form-title">Complete Your Order</h2>
-
-        <!-- ✅ FORM FIXED HERE -->
-        <form id="orderForm"
-              action="https://formsubmit.co/clivedinowinner0@gmail.com"
-              method="POST"
-              target="hiddenFrame">
-
+        <form id="orderForm" action="https://formsubmit.co/clivedinowinner0@gmail.com" method="POST">
             <input type="hidden" name="_subject" value="New Order from Mini Mart">
             <input type="hidden" name="_template" value="table">
             <input type="hidden" name="_captcha" value="false">
-
-            <!-- ❌ removed _next redirect -->
-
+            <input type="hidden" name="_next" value="https://yourdomain.com/thank-you.html">
+            
             <div class="form-group">
                 <label class="form-label">Your Order Number</label>
                 <input type="text" class="form-input" name="Order_Number" id="orderNumber" readonly style="font-size: 1.5em; text-align: center; color: #2196F3; font-weight: bold;">
             </div>
-
             <div class="form-group">
                 <label class="form-label">Your Name</label>
                 <input type="text" class="form-input" name="Customer_Name" id="customerName" required>
             </div>
-
             <div class="form-group">
                 <label class="form-label">Your Email</label>
                 <input type="email" class="form-input" name="Customer_Email" id="customerEmail" required>
             </div>
-
             <div class="form-group">
                 <label class="form-label">Phone Number</label>
                 <input type="tel" class="form-input" name="Phone_Number" id="customerPhone">
             </div>
-
             <div class="form-group">
                 <label class="form-label">Additional Notes (Optional)</label>
                 <textarea class="form-input" name="Notes" id="customerNotes" rows="3"></textarea>
             </div>
-
-            <!-- Hidden order data -->
+            
+            <!-- Hidden field for order items -->
             <input type="hidden" name="Order_Items" id="orderItems">
             <input type="hidden" name="Total_Amount" id="totalAmountHidden">
-
+            
             <div class="form-buttons">
                 <button type="button" class="form-cancel" id="cancelBtn">Cancel</button>
                 <button type="submit" class="form-submit">Send Order</button>
@@ -98,12 +83,19 @@
     <div class="container">
         <header>
             <h1>🏪 Mini Mart</h1>
-            <button class="cart-button" id="cartButton">
-                🛒 Cart
-                <span class="cart-count" id="cartCount">0</span>
-            </button>
+            <div style="display: flex; gap: 15px; align-items: center;">
+                <span id="welcomeUser" style="color: #2196F3; font-size: 0.9em;"></span>
+                <button class="cart-button" id="cartButton">
+                    🛒 Cart
+                    <span class="cart-count" id="cartCount">0</span>
+                </button>
+                <button class="cart-button" id="logoutBtn" style="background: #f44336;">
+                    🚪 Logout
+                </button>
+            </div>
         </header>
 
+        <!-- Category Navigation -->
         <div class="category-nav">
             <button class="category-link" data-category="cookies">🍪 Cookies</button>
             <button class="category-link" data-category="snacks">🍿 Snacks</button>
@@ -113,31 +105,37 @@
             <button class="category-link" data-category="giftcards">🎁 Gift Cards</button>
         </div>
 
+        <!-- Cookies Category -->
         <div class="category" id="cookies">
             <h2 class="category-title">🍪 Cookies</h2>
             <div class="products-grid" id="cookies-grid"></div>
         </div>
 
+        <!-- Snacks Category -->
         <div class="category" id="snacks">
             <h2 class="category-title">🍿 Snacks</h2>
             <div class="products-grid" id="snacks-grid"></div>
         </div>
 
+        <!-- Drinks Category -->
         <div class="category" id="drinks">
             <h2 class="category-title">🥤 Drinks</h2>
             <div class="products-grid" id="drinks-grid"></div>
         </div>
 
+        <!-- Instant Ramen Category -->
         <div class="category" id="ramen">
             <h2 class="category-title">🍜 Instant Ramen</h2>
             <div class="products-grid" id="ramen-grid"></div>
         </div>
 
+        <!-- Donuts Category -->
         <div class="category" id="donuts">
             <h2 class="category-title">🍩 Donuts</h2>
             <div class="products-grid" id="donuts-grid"></div>
         </div>
 
+        <!-- Gift Cards Category -->
         <div class="category" id="giftcards">
             <h2 class="category-title">🎁 Gift Cards</h2>
             <div class="products-grid" id="giftcards-grid"></div>
